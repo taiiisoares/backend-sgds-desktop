@@ -18,7 +18,6 @@ public class TesteApiApplication {
 		List<Usuario> userList = apiService.getUser();
 		for (Usuario user : userList) {
 			System.out.println(user);
-			System.out.println(user);
 		}
 	}
 
