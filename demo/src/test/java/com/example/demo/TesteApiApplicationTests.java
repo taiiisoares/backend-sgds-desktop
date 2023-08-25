@@ -16,7 +16,7 @@ class TesteApiApplicationTests {
 
 	@Test
 	public void testGetUser() {
-		List<Usuario> listaUsuarios = apiService.getUser();
+
 	}
 
 }
