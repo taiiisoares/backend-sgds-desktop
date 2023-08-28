@@ -1,5 +1,8 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
 package com.example.demo;
-
 /**
  *
  * @author Dev
@@ -163,7 +166,6 @@ public class Login extends javax.swing.JFrame {
         jPanel11.setLayout(new java.awt.BorderLayout());
 
         Icon.setBackground(new java.awt.Color(4, 56, 79));
-        //Icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/panastech/apirestsgds/recursos/SGDS Sem fundo.png"))); // NOI18N
         Icon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(4, 56, 79), 4));
         jPanel11.add(Icon, java.awt.BorderLayout.CENTER);
 
@@ -171,7 +173,6 @@ public class Login extends javax.swing.JFrame {
         jPanel12.setPreferredSize(new java.awt.Dimension(100, 100));
 
         jLabel7.setBackground(new java.awt.Color(4, 56, 79));
-        //jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/panastech/apirestsgds/recursos/PanasTech logomarca.png"))); // NOI18N
         jLabel7.setPreferredSize(new java.awt.Dimension(20, 10));
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
