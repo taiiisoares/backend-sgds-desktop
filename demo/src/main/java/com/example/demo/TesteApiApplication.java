@@ -22,7 +22,7 @@ public class TesteApiApplication {
                 Usuario usuario = new Usuario();
                 ConfigurableApplicationContext context = SpringApplication.run(TesteApiApplication.class, args);
                 ApiService apiService = context.getBean(ApiService.class);
-                List<Usuario> user = apiService.getUsuarioByTelefone("551124510987");
+                List<Usuario> user = apiService.getUsuarioByCargo("Paciente");
                 usuario.printUsuarioList(user);
             });
 

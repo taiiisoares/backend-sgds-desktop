@@ -26,21 +26,21 @@ public class ApiService {
     }
 
     public Usuario getUsuarioById(Long id){
-        String apiURlString = API_URL + "/buscaruserid" + "/" + id;
+        String apiURlString = API_URL + "/id" + ":" + id;
         ResponseEntity<Usuario> response = restTemplate.exchange(apiURlString,
         HttpMethod.GET, null, Usuario.class);
         return response.getBody();
     }
 
     public Usuario getUsuarioByCpf(String cpf){
-        String apiURlString = API_URL + "/buscarusercpf" + "/" + cpf;
+        String apiURlString = API_URL + "/cpf" + ":" + cpf;
         ResponseEntity<Usuario> response = restTemplate.exchange(apiURlString,
         HttpMethod.GET, null, Usuario.class);
         return response.getBody();
     }
 
     public List<Usuario> getUsuarioByNome(String nome) {
-        String apiURlString = API_URL + "/buscarusernome" + "/" + nome;
+        String apiURlString = API_URL + "/nome" + ":" + nome;
         ResponseEntity<List<Usuario>> response = restTemplate.exchange(apiURlString, HttpMethod.GET, null,
                 new ParameterizedTypeReference<List<Usuario>>() {
                 });
@@ -48,7 +48,7 @@ public class ApiService {
     }
 
     public List<Usuario> getUsuarioByEmail(String email) {
-        String apiURlString = API_URL + "/buscaruseremail" + "/" + email;
+        String apiURlString = API_URL + "/email" + ":" + email;
         ResponseEntity<List<Usuario>> response = restTemplate.exchange(apiURlString, HttpMethod.GET, null,
                 new ParameterizedTypeReference<List<Usuario>>() {
                 });
@@ -56,7 +56,7 @@ public class ApiService {
     }
 
     public List<Usuario> getUsuarioByTelefone(String telefone) {
-        String apiURlString = API_URL + "/buscarusertelefone" + "/" + telefone;
+        String apiURlString = API_URL + "/telefone" + ":" + telefone;
         ResponseEntity<List<Usuario>> response = restTemplate.exchange(apiURlString, HttpMethod.GET, null,
                 new ParameterizedTypeReference<List<Usuario>>() {
                 });
@@ -64,7 +64,7 @@ public class ApiService {
     }
 
     public List<Usuario> getUsuarioByCargo(String cargo) {
-        String apiURlString = API_URL + "/buscarusecargo" + "/" + cargo;
+        String apiURlString = API_URL + "/cargo" + ":" + cargo;
         ResponseEntity<List<Usuario>> response = restTemplate.exchange(apiURlString, HttpMethod.GET, null,
                 new ParameterizedTypeReference<List<Usuario>>() {
                 });
@@ -72,7 +72,7 @@ public class ApiService {
     }
 
     public Usuario alterarUsuario(String cpf){
-        String apiURlString = API_URL + "/alterarusuario" + "/" + cpf;
+        String apiURlString = API_URL + "/alterar" + ":" + cpf;
         ResponseEntity<Usuario> response = restTemplate.exchange(apiURlString, HttpMethod.GET, null,
                 new ParameterizedTypeReference<Usuario>() {
                 });
