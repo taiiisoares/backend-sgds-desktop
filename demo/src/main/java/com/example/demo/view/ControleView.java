@@ -1,23 +1,31 @@
 package com.example.demo.view;
 
+import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 import org.springframework.stereotype.Component;
 
-import com.example.demo.entidade.Login;
+import com.example.demo.db.controller.Controlador;
+import com.example.demo.view.login.JFLogin;
 
 @Component
 public class ControleView {
-    private Login login;
+    private final Controlador servico;
+    ControleView controleView;
 
-    public ControleView(Login login){
-        this.login = login;
+    // Construtor que injeta uma instância de Login
+    public ControleView(Controlador servico) {
+        this.servico = servico;
     }
 
-    public ControleView(){
-
+    // Método que solicita um login usando o serviço de Login
+    public boolean requisitarLogin(String cpf, String senha) {
+        // Chama o método de login no serviço e retorna o resultado
+        return servico.login(cpf, senha);
     }
-    public boolean requisitarLogin(String cpf, String senha){
-        Login servico = new Login();
-        boolean retornoLogin = servico.login(cpf, senha);
-        return retornoLogin;
+
+    public boolean requisitarCadastro(String nome, String cpf, String email, String senha, String cargo) {
+        return servico.cadastro(nome, cpf, email, senha, cargo);
     }
 }

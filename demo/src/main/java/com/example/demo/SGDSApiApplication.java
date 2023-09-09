@@ -1,56 +1,51 @@
 package com.example.demo;
 
-import java.util.List;
-
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.neo4j.ConfigBuilderCustomizer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
 import com.example.demo.db.controller.ApiService;
-import com.example.demo.entidade.ContextApp;
-import com.example.demo.entidade.Login;
-import com.example.demo.entidade.modelo.Usuario;
+import com.example.demo.view.ControleView;
 import com.example.demo.view.login.JFLogin;
+import com.example.demo.view.cadastro.Cadastro;
 
 @SpringBootApplication
 @ComponentScan(basePackages = "com.example.demo")
 public class SGDSApiApplication {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-            Thread springThread = new Thread(() -> {
-                Usuario usuario = new Usuario();
+        // Inicializa a interface gráfica Swing em uma nova thread
+        Thread swingThread = new Thread(() -> {
+            try {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+                    | UnsupportedLookAndFeelException ex) {
+                // Em caso de falha ao definir o look-and-feel, continue com o padrão
+            }
+
+            java.awt.EventQueue.invokeLater(() -> {
+                // Inicia a aplicação Spring e obtém o contexto da aplicação
                 ConfigurableApplicationContext context = SpringApplication.run(SGDSApiApplication.class, args);
-                ApiService apiService = context.getBean(ApiService.class);
-                boolean b = apiService.enviarRequisicaoLogin("51028851898", "1234");
-                if(b){
-                    System.out.println("Logado com sucesso");
-                }else{
-                    System.out.println("STATUS CODE: 401!");
-                }
-                ContextApp.setContext(context);
-            });
 
-            Thread swingThread = new Thread(() -> {
-                try {
-                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-                }
-                    java.awt.EventQueue.invokeLater(() -> {
-                    JFLogin login = new JFLogin();
-                    login.setLocationRelativeTo(null);
-                    login.setVisible(true);
-                });
-            });
+                // Obtém o controle da view a partir do contexto do Spring
+                ControleView controleView = context.getBean(ControleView.class);
 
-		swingThread.start();
-		
-		springThread.start();
-	}
+                // Cria e exibe a tela de login
+                JFLogin login = new JFLogin(controleView);
+                login.setResizable(false);
+                login.setLocationRelativeTo(null);
+                login.setVisible(true);
+            });
+        });
+
+        // Inicia a thread da interface gráfica
+        swingThread.start();
+
+    }
 
 }
