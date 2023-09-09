@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.demo.db.controller.ApiService;
-import com.example.demo.entidade.Usuario;
+import com.example.demo.entidade.modelo.Usuario;
 
 import java.util.List;
 

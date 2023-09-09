@@ -2,10 +2,36 @@
     "configurations": [
         {
             "type": "java",
+            "name": "SGDSApiApplication",
+            "request": "launch",
+            "mainClass": "com.example.demo.SGDSApiApplication"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-TesteApiApplication<demo>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "mainClass": "com.example.demo.TesteApiApplication",
+            "projectName": "demo",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-SGDSApiApplication<demo>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.example.SGDS.SGDSApiApplication",
+            "projectName": "demo",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-SGDSApiApplication<demo>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.example.demo.SGDSApiApplication",
             "projectName": "demo",
             "args": "",
             "envFile": "${workspaceFolder}/.env"

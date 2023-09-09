@@ -1,4 +1,4 @@
-package com.example.demo.entidade;
+package com.example.demo.entidade.modelo;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public class Usuario {
     private String telefone;
     private String cargo;
 
-    public String getUsuario(){
+    public String getPrintUsuario(){
         return "ID: " + id +
             "\nNome: " + nome +
             "\nCPF: " + cpf +

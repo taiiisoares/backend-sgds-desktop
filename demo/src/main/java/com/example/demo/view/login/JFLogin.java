@@ -2,17 +2,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.example.demo;
+package com.example.demo.view.login;
+
+import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.example.demo.entidade.Login;
+import com.example.demo.view.ControleView;
+
 /**
  *
  * @author Dev
  */
-public class Login extends javax.swing.JFrame {
-
+public class JFLogin extends javax.swing.JFrame {
+    private Login login;
     /**
      * Creates new form Login
      */
-    public Login() {
+    public JFLogin() {
         initComponents();
     }
 
@@ -24,6 +31,7 @@ public class Login extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        ControleView controle = new ControleView();
 
         jPanel1 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -32,11 +40,11 @@ public class Login extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        txtCPF = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtSenha = new javax.swing.JPasswordField();
         jPanel8 = new javax.swing.JPanel();
         jCheckBox1 = new javax.swing.JCheckBox();
         jLabel4 = new javax.swing.JLabel();
@@ -81,7 +89,6 @@ public class Login extends javax.swing.JFrame {
 
         jPanel3.setPreferredSize(new java.awt.Dimension(400, 40));
 
-        //jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/panastech/sgds/view/recursos/Google_1.png"))); // NOI18N
         jButton1.setText("Entrar com Google");
         jButton1.setPreferredSize(new java.awt.Dimension(250, 30));
         jPanel3.add(jButton1);
@@ -93,8 +100,8 @@ public class Login extends javax.swing.JFrame {
         jPanel6.setPreferredSize(new java.awt.Dimension(300, 50));
         jPanel6.setLayout(new java.awt.BorderLayout(4, 5));
 
-        jTextField1.setPreferredSize(new java.awt.Dimension(71, 30));
-        jPanel6.add(jTextField1, java.awt.BorderLayout.CENTER);
+        txtCPF.setPreferredSize(new java.awt.Dimension(71, 30));
+        jPanel6.add(txtCPF, java.awt.BorderLayout.CENTER);
 
         jLabel2.setText("Endereço de Email");
         jPanel6.add(jLabel2, java.awt.BorderLayout.PAGE_START);
@@ -107,12 +114,12 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setText("Senha");
         jPanel7.add(jLabel3, java.awt.BorderLayout.PAGE_START);
 
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+        txtSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
+                txtSenhaActionPerformed(evt);
             }
         });
-        jPanel7.add(jPasswordField1, java.awt.BorderLayout.CENTER);
+        jPanel7.add(txtSenha, java.awt.BorderLayout.CENTER);
 
         jPanel5.add(jPanel7);
 
@@ -143,6 +150,15 @@ public class Login extends javax.swing.JFrame {
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+                ControleView controleView = new ControleView(login);
+                String cpfUsuario = txtCPF.getText();
+                String senhaUsuario = txtSenha.getCaret().toString();
+                
+                if(controleView.requisitarLogin(cpfUsuario, senhaUsuario)){
+                    System.out.println("Logado com sucesso");
+                }else{
+                    System.out.println("STATUS CODE: 401!");
+                }
             }
         });
         jPanel9.add(jButton2);
@@ -200,9 +216,9 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+    private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
+    }//GEN-LAST:event_txtSenhaActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
@@ -235,7 +251,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtCPF;
+    private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
 }
