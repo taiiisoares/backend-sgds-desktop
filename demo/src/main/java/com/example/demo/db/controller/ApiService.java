@@ -113,7 +113,7 @@ public class ApiService {
     }
 
     public Boolean cadastro(Usuario usuario) {
-        String apiURlString = API_URL + "/adicionarUsuario";
+        String apiURlString = API_URL + "/adicionar";
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(org.springframework.http.MediaType.APPLICATION_JSON);
@@ -125,11 +125,5 @@ public class ApiService {
             return true;
         }
         return false;
-    }
-
-    public String criptografarSenha(String senha) {
-        String apiURlString = API_URL + "/criptografia?" + "senha=" + senha;
-        ResponseEntity<String> retorno = restTemplate.exchange(apiURlString, HttpMethod.GET, null, String.class);
-        return retorno.getBody();
     }
 }

@@ -296,6 +296,8 @@ public class Cadastro extends javax.swing.JFrame {
                         JFLogin login = new JFLogin(controleView);
                         login.visibilidade(true);
                         dispose();
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Deu merda!", "ERRO", 0);
                     }
                 }
             }
