@@ -1,5 +1,7 @@
 package com.panastech.backendsgds.view;
 
+import java.util.List;
+
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -7,6 +9,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 import org.springframework.stereotype.Component;
 
 import com.panastech.backendsgds.controller.Controlador;
+import com.panastech.backendsgds.entidade.modelo.Especialidade;
 import com.panastech.backendsgds.view.login.Login;
 
 @Component
@@ -27,5 +30,11 @@ public class ControleView {
 
     public boolean requisitarCadastro(String nome, String cpf, String email, String senha, String cargo) {
         return servico.cadastro(nome, cpf, email, senha, cargo);
+    }
+
+    public List<String> requisitarEspecialidades() {
+        List<String> lista;
+        lista = servico.requisitarEspecialidades();
+        return lista;
     }
 }

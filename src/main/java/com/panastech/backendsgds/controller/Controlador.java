@@ -1,11 +1,15 @@
 package com.panastech.backendsgds.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JOptionPane;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.panastech.backendsgds.db.controller.Api.UsuarioRest;
+import com.panastech.backendsgds.entidade.modelo.Especialidade;
 import com.panastech.backendsgds.entidade.modelo.Usuario;
 import com.panastech.backendsgds.entidade.modelo.UsuarioLogin;
 
@@ -18,6 +22,16 @@ public class Controlador {
     // Construtor
     public Controlador(UsuarioRest apiService) {
         this.apiService = apiService; // Injeta o serviço ApiService ao criar uma instância de Login
+    }
+
+    public List<String> requisitarEspecialidades() {
+        List<Especialidade> listaEspecialidade = apiService.getEspecialidadeList();
+        List<String> listaNomesEspecialidade = new ArrayList<>();
+
+        for (Especialidade especialidade : listaEspecialidade) {
+            listaNomesEspecialidade.add(especialidade.getNome());
+        }
+        return listaNomesEspecialidade;
     }
 
     // Método para realizar o login
@@ -50,7 +64,7 @@ public class Controlador {
 
     public boolean cadastro(String nome, String cpf, String email, String senha, String cargo) {
         Usuario usuario = new Usuario();
-        usuario.setName(nome);
+        usuario.setNome(nome);
         usuario.setCpf(cpf);
         usuario.setEmail(email);
         usuario.setSenha(senha);

@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.panastech.backendsgds.entidade.modelo.Especialidade;
 import com.panastech.backendsgds.entidade.modelo.Usuario;
 import com.panastech.backendsgds.entidade.modelo.UsuarioLogin;
 
@@ -26,7 +27,7 @@ import java.util.List;
  */
 @Service
 public class UsuarioRest {
-    private static final String API_URL = "http://localhost:8080/usuario";
+    private static final String API_URL = "http://localhost:8080";
 
     private final RestTemplate restTemplate;
 
@@ -47,28 +48,37 @@ public class UsuarioRest {
      * Campo de Getters e Setters
      */
     public List<Usuario> getUsuario() {
-        ResponseEntity<List<Usuario>> response = restTemplate.exchange(API_URL, HttpMethod.GET, null,
+        String url = API_URL + "/usuario";
+        ResponseEntity<List<Usuario>> response = restTemplate.exchange(url, HttpMethod.GET, null,
                 new ParameterizedTypeReference<List<Usuario>>() {
                 });
         return response.getBody();
     }
 
+    public List<Especialidade> getEspecialidadeList() {
+        String url = API_URL + "/especialidade";
+        ResponseEntity<List<Especialidade>> response = restTemplate.exchange(url, HttpMethod.GET, null,
+                new ParameterizedTypeReference<List<Especialidade>>() {
+                });
+        return response.getBody();
+    }
+
     public Usuario getUsuarioById(Long id) {
-        String apiURlString = API_URL + "/id" + ":" + id;
+        String apiURlString = API_URL + "/usuario/id" + ":" + id;
         ResponseEntity<Usuario> response = restTemplate.exchange(apiURlString,
                 HttpMethod.GET, null, Usuario.class);
         return response.getBody();
     }
 
     public Usuario getUsuarioByCpf(String cpf) {
-        String apiURlString = API_URL + "/cpf" + ":" + cpf;
+        String apiURlString = API_URL + "/usuario/cpf" + ":" + cpf;
         ResponseEntity<Usuario> response = restTemplate.exchange(apiURlString,
                 HttpMethod.GET, null, Usuario.class);
         return response.getBody();
     }
 
     public List<Usuario> getUsuarioByNome(String nome) {
-        String apiURlString = API_URL + "/nome" + ":" + nome;
+        String apiURlString = API_URL + "/usuario/nome" + ":" + nome;
         ResponseEntity<List<Usuario>> response = restTemplate.exchange(apiURlString, HttpMethod.GET, null,
                 new ParameterizedTypeReference<List<Usuario>>() {
                 });
@@ -76,7 +86,7 @@ public class UsuarioRest {
     }
 
     public List<Usuario> getUsuarioByEmail(String email) {
-        String apiURlString = API_URL + "/email" + ":" + email;
+        String apiURlString = API_URL + "/usuario/email" + ":" + email;
         ResponseEntity<List<Usuario>> response = restTemplate.exchange(apiURlString, HttpMethod.GET, null,
                 new ParameterizedTypeReference<List<Usuario>>() {
                 });
@@ -84,7 +94,7 @@ public class UsuarioRest {
     }
 
     public List<Usuario> getUsuarioByTelefone(String telefone) {
-        String apiURlString = API_URL + "/telefone" + ":" + telefone;
+        String apiURlString = API_URL + "/usuario/telefone" + ":" + telefone;
         ResponseEntity<List<Usuario>> response = restTemplate.exchange(apiURlString, HttpMethod.GET, null,
                 new ParameterizedTypeReference<List<Usuario>>() {
                 });
@@ -92,7 +102,7 @@ public class UsuarioRest {
     }
 
     public List<Usuario> getUsuarioByCargo(String cargo) {
-        String apiURlString = API_URL + "/cargo" + ":" + cargo;
+        String apiURlString = API_URL + "/usuario/cargo" + ":" + cargo;
         ResponseEntity<List<Usuario>> response = restTemplate.exchange(apiURlString, HttpMethod.GET, null,
                 new ParameterizedTypeReference<List<Usuario>>() {
                 });
@@ -100,7 +110,7 @@ public class UsuarioRest {
     }
 
     public Usuario alterarUsuario(String cpf) {
-        String apiURlString = API_URL + "/alterar" + ":" + cpf;
+        String apiURlString = API_URL + "/usuario/alterar" + ":" + cpf;
         ResponseEntity<Usuario> response = restTemplate.exchange(apiURlString, HttpMethod.GET, null,
                 new ParameterizedTypeReference<Usuario>() {
                 });
@@ -108,7 +118,7 @@ public class UsuarioRest {
     }
 
     public UsuarioLogin enviarRequisicaoLogin(String cpf, String senha) {
-        String apiURlString = API_URL + "/login?" + "cpf=" + cpf + "&senha=" + senha;
+        String apiURlString = API_URL + "/usuario/login?" + "cpf=" + cpf + "&senha=" + senha;
         ResponseEntity<UsuarioLogin> retorno = restTemplate.exchange(apiURlString, HttpMethod.GET, null,
                 new ParameterizedTypeReference<UsuarioLogin>() {
                 });
@@ -116,7 +126,7 @@ public class UsuarioRest {
     }
 
     public Boolean cadastro(Usuario usuario) {
-        String apiURlString = API_URL + "/adicionar";
+        String apiURlString = API_URL + "/usuario/adicionar";
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(org.springframework.http.MediaType.APPLICATION_JSON);
