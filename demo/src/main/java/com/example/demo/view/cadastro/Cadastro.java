@@ -9,7 +9,7 @@ import java.util.Arrays;
 import javax.swing.JOptionPane;
 
 import com.example.demo.view.ControleView;
-import com.example.demo.view.login.JFLogin;
+import com.example.demo.view.login.Login;
 
 /**
  *
@@ -289,15 +289,17 @@ public class Cadastro extends javax.swing.JFrame {
                 Arrays.fill(senhaTxt, '0');
                 if (nomeUsuario.equals("") && cpfUsuario.equals("") && emailUsuario.equals("")
                         && senhaUsuario.equals("")) {
-                    JOptionPane.showMessageDialog(null, "Preencha todos os campos!", "ERRO", 0);
+                    JOptionPane.showMessageDialog(null, "Preencha todos os campos!", "Cadastro não efetuado",
+                            JOptionPane.ERROR_MESSAGE);
                 } else {
                     if (controleView.requisitarCadastro(nomeUsuario, cpfUsuario, emailUsuario,
                             senhaUsuario, "Paciente")) {
-                        JFLogin login = new JFLogin(controleView);
-                        login.visibilidade(true);
+                        Login login = new Login(controleView);
+                        login.setVisible(true);
                         dispose();
-                    }else{
-                        JOptionPane.showMessageDialog(null, "Deu merda!", "ERRO", 0);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Erro ao efetuar cadastro. Confirme suas credenciais!",
+                                "Cadastro não efetuado", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }

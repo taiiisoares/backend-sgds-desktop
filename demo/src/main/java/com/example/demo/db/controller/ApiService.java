@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.example.demo.entidade.modelo.Usuario;
+import com.example.demo.entidade.modelo.UsuarioLogin;
 
 import java.util.List;
 
@@ -106,9 +107,11 @@ public class ApiService {
         return response.getBody();
     }
 
-    public Boolean enviarRequisicaoLogin(String cpf, String senha) {
+    public UsuarioLogin enviarRequisicaoLogin(String cpf, String senha) {
         String apiURlString = API_URL + "/login?" + "cpf=" + cpf + "&senha=" + senha;
-        ResponseEntity<Boolean> retorno = restTemplate.exchange(apiURlString, HttpMethod.GET, null, Boolean.class);
+        ResponseEntity<UsuarioLogin> retorno = restTemplate.exchange(apiURlString, HttpMethod.GET, null,
+                new ParameterizedTypeReference<UsuarioLogin>() {
+                });
         return retorno.getBody();
     }
 

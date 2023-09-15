@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.example.demo.entidade.modelo.Usuario;
+import com.example.demo.entidade.modelo.UsuarioLogin;
 
 @Component
 public class Controlador {
@@ -20,10 +21,23 @@ public class Controlador {
 
     // Método para realizar o login
     public boolean login(String cpf, String senha) {
-        if (apiService.enviarRequisicaoLogin(cpf, senha)) {
-            JOptionPane.showMessageDialog(null, "Login efetuado com sucesso!", "Login realizado",
-                    JOptionPane.INFORMATION_MESSAGE);
-            return true;
+        UsuarioLogin usuarioLogin = apiService.enviarRequisicaoLogin(cpf, senha);
+        if (usuarioLogin != null) {
+            String cargo = usuarioLogin.getCargo();
+            if (!cargo.equals("Paciente")) {
+                if(cargo.equals("Recepcionista")){
+                    JOptionPane.showMessageDialog(null, "Login efetuado com sucesso!", "Login realizado",
+                        JOptionPane.INFORMATION_MESSAGE);
+                return true;
+                }else{
+                    JOptionPane.showMessageDialog(null, "Login efetuado com sucesso!", "Login realizado",
+                        JOptionPane.INFORMATION_MESSAGE);
+                return true;
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Não autorizado", "Erro ao efetuar login", 0);
+                return false;
+            }
         } else {
             JOptionPane.showMessageDialog(null, "CPF e/ou senha incorretos!", "Erro ao efetuar login", 0);
             return false;

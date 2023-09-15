@@ -10,7 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 import com.example.demo.db.controller.ApiService;
 import com.example.demo.view.ControleView;
-import com.example.demo.view.login.JFLogin;
+import com.example.demo.view.login.Login;
 import com.example.demo.view.cadastro.Cadastro;
 
 @SpringBootApplication
@@ -36,9 +36,7 @@ public class SGDSApiApplication {
                 ControleView controleView = context.getBean(ControleView.class);
 
                 // Cria e exibe a tela de login
-                JFLogin login = new JFLogin(controleView);
-                login.setResizable(false);
-                login.setLocationRelativeTo(null);
+                Login login = new Login(controleView);
                 login.setVisible(true);
             });
         });

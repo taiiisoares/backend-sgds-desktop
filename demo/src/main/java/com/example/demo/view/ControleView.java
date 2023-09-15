@@ -7,7 +7,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 import org.springframework.stereotype.Component;
 
 import com.example.demo.db.controller.Controlador;
-import com.example.demo.view.login.JFLogin;
+import com.example.demo.view.login.Login;
 
 @Component
 public class ControleView {
