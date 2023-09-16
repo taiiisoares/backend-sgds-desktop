@@ -37,4 +37,9 @@ public class ControleView {
         lista = servico.requisitarEspecialidades();
         return lista;
     }
+
+    // public boolean solicitarExame(String especialidade, String nome, String
+    // detalhes){
+
+    // }
 }

@@ -80,4 +80,8 @@ public class Controlador {
         }
         return false;
     }
+
+    // public boolean solicitarExame(String, cpf, String especialidade, String nome, String detalhes){
+        
+    // }
 }

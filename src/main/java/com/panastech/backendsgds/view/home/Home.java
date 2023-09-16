@@ -6,6 +6,7 @@ package com.panastech.backendsgds.view.home;
 
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
@@ -15,6 +16,7 @@ import com.panastech.backendsgds.entidade.modelo.Especialidade;
 import com.panastech.backendsgds.view.ControleView;
 import com.panastech.backendsgds.view.home.popups.popUpFileChooser;
 import com.panastech.backendsgds.view.home.popups.popUpSolicitarExame;
+import com.toedter.calendar.JDateChooser;
 
 /**
  *
@@ -66,6 +68,7 @@ public class Home extends javax.swing.JFrame {
                 conteinerTitulo2 = new javax.swing.JPanel();
                 jLabel6 = new javax.swing.JLabel();
                 conteinerTxtField2 = new javax.swing.JPanel();
+                JDateChooser dateChooser = new JDateChooser();
                 listaSuspData = new javax.swing.JComboBox<>();
                 conteinerConfirmar = new javax.swing.JPanel();
                 conteinerEntrar1 = new javax.swing.JPanel();
@@ -245,6 +248,28 @@ public class Home extends javax.swing.JFrame {
                 conteinerLista1.setPreferredSize(new java.awt.Dimension(350, 40));
                 conteinerLista1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
 
+                List<String> listaClinicas = Arrays.asList("Hospital Santa Clara",
+                                "Clínica São Marcos", "Centro Médico do Sol", "Hospital Nossa Senhora da Saúde",
+                                "Clínica São Lucas",
+                                "Hospital do Vale",
+                                "Clínica São João",
+                                "Centro Médico Bem-Estar",
+                                "Hospital das Oliveiras",
+                                "Clínica da Esperança",
+                                "Centro de Saúde Vida Plena",
+                                "Hospital São Francisco",
+                                "Clínica do Coração",
+                                "Centro Médico Harmonia",
+                                "Hospital da Cidade Nova",
+                                "Clínica São Rafael",
+                                "Centro de Saúde Paz e Saúde",
+                                "Hospital Santa Rosa",
+                                "Clínica Saúde Integral",
+                                "Centro Médico Boa Vista");
+
+                for (String item : listaClinicas) {
+                        listaSuspLocal.addItem(item);
+                }
                 conteinerLista1.add(listaSuspLocal);
 
                 conteinerLocal.add(conteinerLista1);
@@ -288,7 +313,7 @@ public class Home extends javax.swing.JFrame {
                 conteinerTxtField2.setPreferredSize(new java.awt.Dimension(350, 40));
                 conteinerTxtField2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 0));
 
-                conteinerTxtField2.add(listaSuspData);
+                conteinerTxtField2.add(dateChooser);
 
                 conteinerCargo.add(conteinerTxtField2);
 
