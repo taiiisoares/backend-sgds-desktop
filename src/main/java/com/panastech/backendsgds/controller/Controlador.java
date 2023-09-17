@@ -12,12 +12,14 @@ import com.panastech.backendsgds.db.controller.Api.UsuarioRest;
 import com.panastech.backendsgds.entidade.modelo.Especialidade;
 import com.panastech.backendsgds.entidade.modelo.Usuario;
 import com.panastech.backendsgds.entidade.modelo.UsuarioLogin;
+import com.panastech.backendsgds.view.ControleView;
 
 @Component
 public class Controlador {
 
     @Autowired
     private final UsuarioRest apiService; // Serviço para realizar requisições à API
+    ControleView controleView;
 
     // Construtor
     public Controlador(UsuarioRest apiService) {
@@ -81,7 +83,15 @@ public class Controlador {
         return false;
     }
 
-    // public boolean solicitarExame(String, cpf, String especialidade, String nome, String detalhes){
-        
+    public UsuarioLogin getNomeLogin(String cpf) {
+        Usuario usuario = apiService.getUsuarioByCpf(cpf);
+        UsuarioLogin usuarioLogin = new UsuarioLogin();
+        usuarioLogin.setNome(usuario.getNome());
+        usuarioLogin.setCargo(usuario.getCargo());
+        return usuarioLogin;
+    }
+    // public boolean solicitarExame(String, cpf, String especialidade, String nome,
+    // String detalhes){
+
     // }
 }

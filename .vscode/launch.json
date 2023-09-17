@@ -5,6 +5,13 @@
             "name": "SGDSApiApplication",
             "request": "launch",
             "mainClass": "com.panastech.backendsgds.SGDSApiApplication",
+            "projectName": "backend-sgds"
+        },
+        {
+            "type": "java",
+            "name": "SGDSApiApplication",
+            "request": "launch",
+            "mainClass": "com.panastech.backendsgds.SGDSApiApplication",
             "projectName": "demo"
         },
         {

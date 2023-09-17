@@ -6,16 +6,22 @@ package com.panastech.backendsgds.view.home;
 
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 import com.panastech.backendsgds.entidade.modelo.Especialidade;
+import com.panastech.backendsgds.entidade.modelo.UsuarioLogin;
 import com.panastech.backendsgds.view.ControleView;
 import com.panastech.backendsgds.view.home.popups.popUpFileChooser;
 import com.panastech.backendsgds.view.home.popups.popUpSolicitarExame;
+import com.panastech.backendsgds.view.login.Login;
 import com.toedter.calendar.JDateChooser;
 
 /**
@@ -374,6 +380,51 @@ public class Home extends javax.swing.JFrame {
                 btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 btnConfirmarActionPerformed(evt);
+                                String cpfLogin = controleView.getCpfLogin().getCpf();
+                                String cpfUser = txtCPF.getText();
+                                if (!cpfUser.equals(cpfLogin)) {
+                                        JOptionPane.showMessageDialog(null, "CPF incorreto", "Tente novamente", 0);
+                                } else {
+                                        String especialidadeSelecionada = (String) listaSuspEspecialidade
+                                                        .getSelectedItem();
+                                        String localSelecionado = (String) listaSuspLocal.getSelectedItem();
+                                        Date dataSelecionada = dateChooser.getDate();
+                                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                                        String dataFormatada = sdf.format(dataSelecionada);
+                                        String nomeLogin = controleView.getNomeLogin(cpfUser).getNome();
+                                        // if (dataSelecionada != null) {
+
+                                        // } else {
+                                        // // A data ainda não foi selecionada pelo usuário
+                                        // // Trate esse caso conforme necessário
+                                        // }
+                                        DefaultTableModel table = new DefaultTableModel();
+                                        table.addColumn(new String[] {
+                                                        "Especialidade", "Local", "Data", "Hora", "Médico"
+                                        });
+
+                                        tabelaAgendamentos.setModel(new javax.swing.table.DefaultTableModel(
+                                                        new Object[][] {
+                                                                        { especialidadeSelecionada, localSelecionado,
+                                                                                        dataFormatada, "10h45",
+                                                                                        nomeLogin }
+                                                        },
+                                                        new String[] {
+                                                                        "Especialidade", "Local", "Data", "Hora",
+                                                                        "Médico"
+                                                        }) {
+                                                Class[] types = new Class[] {
+                                                                java.lang.String.class, java.lang.String.class,
+                                                                java.lang.String.class,
+                                                                java.lang.String.class,
+                                                                java.lang.String.class
+                                                };
+
+                                                public Class getColumnClass(int columnIndex) {
+                                                        return types[columnIndex];
+                                                }
+                                        });
+                                }
                         }
                 });
 
@@ -410,24 +461,7 @@ public class Home extends javax.swing.JFrame {
                 tabelaAgendamentos.setBorder(
                                 new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
                 tabelaAgendamentos.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-                tabelaAgendamentos.setModel(new javax.swing.table.DefaultTableModel(
-                                new Object[][] {
-                                                { "TESTE ESPECIALIDADE", "TESTE LOCAL", "TESTE DATA", "TESTE HORA",
-                                                                "TESTE MEDICO" }
-                                },
-                                new String[] {
-                                                "Especialidade", "Local", "Data", "Hora", "Médico"
-                                }) {
-                        Class[] types = new Class[] {
-                                        java.lang.String.class, java.lang.String.class, java.lang.String.class,
-                                        java.lang.String.class,
-                                        java.lang.String.class
-                        };
 
-                        public Class getColumnClass(int columnIndex) {
-                                return types[columnIndex];
-                        }
-                });
                 tabelaAgendamentos.setCellSelectionEnabled(true);
                 tabelaAgendamentos.setDefaultEditor(Object.class, null);
                 tabelaAgendamentos.setShowGrid(true);
@@ -529,10 +563,10 @@ public class Home extends javax.swing.JFrame {
                 tabelaExamesRealizados.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
                 tabelaExamesRealizados.setModel(new javax.swing.table.DefaultTableModel(
                                 new Object[][] {
-                                                { "TESTE EXAME", "TESTE LOCAL", "TESTE DATA/HORA", "TESTE PROTOCOLO" }
+                                                { "Sangue", "Hospital do Vale", "10/06/2023", "00F2DS08AV" }
                                 },
                                 new String[] {
-                                                "Exame", "Local", "Data/Hora", "Protocolo"
+                                                "Exame", "Local", "Data", "Protocolo"
                                 }) {
                         Class[] types = new Class[] {
                                         java.lang.String.class, java.lang.String.class, java.lang.String.class,
@@ -664,8 +698,8 @@ public class Home extends javax.swing.JFrame {
                 tabelaExamesSolicitados.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
                 tabelaExamesSolicitados.setModel(new javax.swing.table.DefaultTableModel(
                                 new Object[][] {
-                                                { "TESTE EXAME", "TESTE LOCAL", "TESTE DATA/HORA", "TESTE PROTOCOLO",
-                                                                "TESTE SOLICITAÇÃO" }
+                                                { "Sangue", "Hospital do Vale", "17/09/2023 14h", "00F2DS08AV",
+                                                                "00001" }
                                 },
                                 new String[] {
                                                 "Exame", "Local", "Data/Hora", "Protocolo", "Nº da Solicitação"

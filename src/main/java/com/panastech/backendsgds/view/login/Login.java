@@ -188,6 +188,7 @@ public class Login extends javax.swing.JFrame {
         Arrays.fill(senhaTxt, '0');
         if (controleView.requisitarLogin(cpfUsuario, senhaUsuario)) {
             Home home = new Home(controleView);
+            controleView.setCpfLogin(cpfUsuario);
             home.setLocationRelativeTo(null);
             home.setVisible(true);
 

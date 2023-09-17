@@ -10,12 +10,14 @@ import org.springframework.stereotype.Component;
 
 import com.panastech.backendsgds.controller.Controlador;
 import com.panastech.backendsgds.entidade.modelo.Especialidade;
+import com.panastech.backendsgds.entidade.modelo.UsuarioLogin;
 import com.panastech.backendsgds.view.login.Login;
 
 @Component
 public class ControleView {
     private final Controlador servico;
     ControleView controleView;
+    UsuarioLogin usuarioLogin = new UsuarioLogin();
 
     // Construtor que injeta uma instância de Login
     public ControleView(Controlador servico) {
@@ -36,6 +38,20 @@ public class ControleView {
         List<String> lista;
         lista = servico.requisitarEspecialidades();
         return lista;
+    }
+
+    public void setCpfLogin(String cpf) {
+        usuarioLogin.setCpf(cpf);
+    }
+
+    public UsuarioLogin getCpfLogin() {
+        return this.usuarioLogin;
+    }
+
+    public UsuarioLogin getNomeLogin(String cpf) {
+        UsuarioLogin usuario = new UsuarioLogin();
+        usuario = servico.getNomeLogin(cpf);
+        return usuario;
     }
 
     // public boolean solicitarExame(String especialidade, String nome, String
