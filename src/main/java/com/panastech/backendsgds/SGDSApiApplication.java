@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.panastech.backendsgds;
 
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -8,13 +8,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
-import com.example.demo.db.controller.ApiService;
-import com.example.demo.view.ControleView;
-import com.example.demo.view.login.Login;
-import com.example.demo.view.cadastro.Cadastro;
+import com.panastech.backendsgds.db.controller.Api.UsuarioRest;
+import com.panastech.backendsgds.view.ControleView;
+import com.panastech.backendsgds.view.cadastro.Cadastro;
+import com.panastech.backendsgds.view.login.Login;
 
 @SpringBootApplication
-@ComponentScan(basePackages = "com.example.demo")
+@ComponentScan(basePackages = "com.panastech.backendsgds")
 public class SGDSApiApplication {
 
     public static void main(String[] args) {

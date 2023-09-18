@@ -2,14 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.example.demo.view.cadastro;
+package com.panastech.backendsgds.view.cadastro;
 
 import java.util.Arrays;
 
 import javax.swing.JOptionPane;
 
-import com.example.demo.view.ControleView;
-import com.example.demo.view.login.Login;
+import com.panastech.backendsgds.view.ControleView;
+import com.panastech.backendsgds.view.login.Login;
 
 /**
  *

@@ -4,33 +4,29 @@
  */
 package com.example.demo.view.login;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Arrays;
 
 import javax.swing.JOptionPane;
-import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.Timer;
 
 import com.example.demo.view.ControleView;
 import com.example.demo.view.cadastro.Cadastro;
+import com.example.demo.view.home.Home;
 
 /**
  *
  * @author Dev
  */
-public class JFLogin extends javax.swing.JFrame {
+public class Login extends javax.swing.JFrame {
     private final ControleView controleView;
 
-    /**
-     * Creates new form Login
-     */
-    public JFLogin(ControleView controleView) {
-        initComponents();
+    public Login(ControleView controleView) {
         this.controleView = controleView;
-    }
-
-    public void visibilidade(boolean valor) {
-        setResizable(!valor);
+        initComponents();
+        setResizable(false);
         setLocationRelativeTo(null);
-        setVisible(valor);
     }
 
     /**
@@ -46,7 +42,6 @@ public class JFLogin extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         txtCPF = new javax.swing.JTextField();
@@ -58,16 +53,13 @@ public class JFLogin extends javax.swing.JFrame {
         jCheckBox1 = new javax.swing.JCheckBox();
         jLabel4 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        btnEntrar = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         btnCadastrar = new javax.swing.JLabel();
         Mostruario = new javax.swing.JPanel();
-        jPanel11 = new javax.swing.JPanel();
-        Icon = new javax.swing.JLabel();
-        jPanel12 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("SGDS © PanasTech");
         setPreferredSize(new java.awt.Dimension(700, 500));
 
         jPanel1.setPreferredSize(new java.awt.Dimension(380, 0));
@@ -93,9 +85,6 @@ public class JFLogin extends javax.swing.JFrame {
                                 .addGap(27, 27, 27)));
 
         jPanel1.add(jPanel4);
-
-        jPanel3.setPreferredSize(new java.awt.Dimension(400, 40));
-        jPanel1.add(jPanel3);
 
         jPanel5.setPreferredSize(new java.awt.Dimension(400, 135));
 
@@ -147,33 +136,25 @@ public class JFLogin extends javax.swing.JFrame {
 
         jPanel9.setPreferredSize(new java.awt.Dimension(400, 40));
 
-        jButton2.setText("Entrar");
-        jButton2.setPreferredSize(new java.awt.Dimension(250, 30));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnEntrar.setText("Entrar");
+        btnEntrar.setPreferredSize(new java.awt.Dimension(250, 30));
+        btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-                String cpfUsuario = txtCPF.getText();
-                char[] senhaTxt = txtSenha.getPassword();
-                String senhaUsuario = new String(senhaTxt);
-                Arrays.fill(senhaTxt, '0');
-                Cadastro cadastro = new Cadastro(controleView);
-                controleView.requisitarLogin(cpfUsuario, senhaUsuario);
+                btnEntrarActionPerformed(evt);
+
             }
         });
-        jPanel9.add(jButton2);
+        jPanel9.add(btnEntrar);
 
         jPanel1.add(jPanel9);
 
         jPanel10.setPreferredSize(new java.awt.Dimension(400, 40));
 
         btnCadastrar.setText("Não possui uma conta? Crie uma conta. ");
+        btnCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Cadastro cadastro = new Cadastro(controleView);
-                cadastro.setResizable(false);
-                cadastro.setLocationRelativeTo(null);
-                cadastro.setVisible(true);
-                dispose();
+                btnCadastrarMouseClicked(evt);
             }
         });
         jPanel10.add(btnCadastrar);
@@ -186,44 +167,6 @@ public class JFLogin extends javax.swing.JFrame {
         java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 100);
         flowLayout1.setAlignOnBaseline(true);
         Mostruario.setLayout(flowLayout1);
-
-        jPanel11.setLayout(new java.awt.BorderLayout());
-
-        Icon.setBackground(new java.awt.Color(4, 56, 79));
-        // Icon.setIcon(new javax.swing.ImageIcon(
-        // getClass().getResource("/br/com/panastech/sgds/view/recursos/SGDS Sem
-        // fundo.png"))); // NOI18N
-        Icon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(4, 56, 79), 4));
-        jPanel11.add(Icon, java.awt.BorderLayout.CENTER);
-
-        jPanel12.setBackground(new java.awt.Color(4, 56, 79));
-        jPanel12.setPreferredSize(new java.awt.Dimension(100, 100));
-
-        jLabel7.setBackground(new java.awt.Color(4, 56, 79));
-        // jLabel7.setIcon(new javax.swing.ImageIcon(
-        // getClass().getResource("/br/com/panastech/sgds/view/recursos/PanasTech
-        // logomarca.png"))); // NOI18N
-        jLabel7.setPreferredSize(new java.awt.Dimension(20, 10));
-
-        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
-        jPanel12.setLayout(jPanel12Layout);
-        jPanel12Layout.setHorizontalGroup(
-                jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 260,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(280, 280, 280)));
-        jPanel12Layout.setVerticalGroup(
-                jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)));
-
-        jPanel11.add(jPanel12, java.awt.BorderLayout.PAGE_END);
-
-        Mostruario.add(jPanel11);
-
         getContentPane().add(Mostruario, java.awt.BorderLayout.CENTER);
 
         pack();
@@ -237,31 +180,40 @@ public class JFLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }// GEN-LAST:event_jCheckBox1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
+    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
-    }// GEN-LAST:event_jButton2ActionPerformed
+        String cpfUsuario = txtCPF.getText();
+        char[] senhaTxt = txtSenha.getPassword();
+        String senhaUsuario = new String(senhaTxt);
+        Arrays.fill(senhaTxt, '0');
+        if (controleView.requisitarLogin(cpfUsuario, senhaUsuario)) {
+            Home home = new Home(controleView);
+            home.setLocationRelativeTo(null);
+            home.setVisible(true);
+
+            dispose();
+        }
+
+    }// GEN-LAST:event_btnEntrarActionPerformed
 
     private void btnCadastrarMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_btnCadastrarMouseClicked
         // TODO add your handling code here:
-
+        Cadastro cadastro = new Cadastro(controleView);
+        cadastro.setLocationRelativeTo(null);
+        cadastro.setVisible(true);
     }// GEN-LAST:event_btnCadastrarMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Icon;
     private javax.swing.JPanel Mostruario;
     private javax.swing.JLabel btnCadastrar;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnEntrar;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
@@ -271,4 +223,5 @@ public class JFLogin extends javax.swing.JFrame {
     private javax.swing.JTextField txtCPF;
     private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
+
 }
